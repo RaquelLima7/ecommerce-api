@@ -6,5 +6,5 @@ class Coupon < ApplicationRecord
   validates :max_use, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :due_date, presence: true
 
-  enum status: { active:1,  inactive: 2 }
+  enum status: { active: 1, inactive: 2 }
 end
