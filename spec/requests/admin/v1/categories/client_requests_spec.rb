@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Admin V1 Categories as :client", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, profile: :client) }
 
   context "GET /categories" do
     let(:url) { "/admin/v1/categories" }
     let!(:categories) { create_list(:category, 5) }
 
     before(:each) { get url, headers: auth_header(user) }
-    include_examples "forbidden access"
+    include_examples "forbidden access" # carrega os "its" do spec/shared_examples/forbidden_access_example.rb
   end
 
   context "POST /categories" do
