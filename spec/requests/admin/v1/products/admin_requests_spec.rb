@@ -13,7 +13,7 @@ RSpec.describe "Admin V1 Products as :admin", type: :request do
         get url, headers: auth_header(user)
         expect(body_json['products'].count).to eq 10
       end
-      
+
       it "returns Products with :productable following default pagination" do
         get url, headers: auth_header(user)
         expected_return = products[0..9].map do |product| 
@@ -69,7 +69,7 @@ RSpec.describe "Admin V1 Products as :admin", type: :request do
         get url, headers: auth_header(user), params: pagination_params
         expect(body_json['products'].count).to eq length
       end
-      
+
       it "returns products limited by pagination" do
         get url, headers: auth_header(user), params: pagination_params
         expected_return = products[5..9].map do |product|
@@ -99,7 +99,7 @@ RSpec.describe "Admin V1 Products as :admin", type: :request do
         end
         expect(body_json['products']).to contain_exactly *expected_return
       end
- 
+
       it "returns success status" do
         get url, headers: auth_header(user), params: order_params
         expect(response).to have_http_status(:ok)
@@ -116,7 +116,7 @@ RSpec.describe "Admin V1 Products as :admin", type: :request do
     let(:categories) { create_list(:category, 2) }
     let(:system_requirement) { create(:system_requirement) }
     let(:post_header) { auth_header(user, merge_with: { 'Content-Type' => 'multipart/form-data' }) }
-    
+
     context "with valid params" do
       let(:game_params) { attributes_for(:game, system_requirement_id: system_requirement.id) }
       let(:product_params) do 
